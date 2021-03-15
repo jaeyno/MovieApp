@@ -1,4 +1,4 @@
-import { movieTheatersCreationDto } from './../movie-theaters.model';
+import { movieTheatersCreationDto, movieTheatersDto } from './../movie-theaters.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,8 +12,10 @@ export class EditMovietheaterComponent implements OnInit {
   constructor(private activateRoute: ActivatedRoute) { }
   
   //temporary raw data
-  model: movieTheatersCreationDto = {
-    name: "Agora"
+  model: movieTheatersDto = {
+    name: "Agora",
+    latitude: 33.6549653627227,
+    longitude: -84.42433957010508
   }
 
   ngOnInit(): void {

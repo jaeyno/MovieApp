@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { coordinatesMap } from './coordinate';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { latLng, LeafletMouseEvent, marker, Marker, tileLayer } from 'leaflet';
 
 @Component({
@@ -11,7 +12,11 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.layers = this.initialCoordinates.map(value => marker([value.latitude, value.longitude]));
   }
+
+  @Output() onSelectedLocation = new EventEmitter<coordinatesMap>();
+  @Input() initialCoordinates: coordinatesMap[] = [];
 
   options = {
     layers: [
@@ -29,6 +34,7 @@ export class MapComponent implements OnInit {
     console.log({latitude, longitude})
     this.layers = [];
     this.layers.push(marker([latitude, longitude]));
+    this.onSelectedLocation.emit({latitude, longitude});
   }
 
 }
