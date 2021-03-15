@@ -1,3 +1,4 @@
+import { MovieFilterComponent } from './movies/movie-filter/movie-filter.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateActorComponent } from './actors/create-actor/create-actor.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
 
   {path: 'movies/create', component: CreateMovieComponent},
   {path: 'movies/edit/:id', component: EditMovieComponent},
+  {path: 'movies/filter', component: MovieFilterComponent},
 
   {path: '**', redirectTo: ''},
 ];
