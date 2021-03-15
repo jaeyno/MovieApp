@@ -20,7 +20,8 @@ export class FormActorComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', {validators: [Validators.required]}],
       dateOfBirth: '',
-      picture: ''
+      picture: '',
+      biography: ''
     });
 
     if (this.model !== undefined) {
@@ -30,6 +31,10 @@ export class FormActorComponent implements OnInit {
 
   onImageSelected(image) {
     this.form.get('picture').setValue(image);
+  }
+
+  changeMarkdown(content) {
+    this.form.get('biography').setValue(content);
   }
 
   saveChanges() {

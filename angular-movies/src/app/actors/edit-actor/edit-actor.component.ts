@@ -10,7 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 export class EditActorComponent implements OnInit {
 
   //temporary raw data
-  model: actorDto = {name: 'Tom Holland', dateOfBirth: new Date(), picture: 'https://m.media-amazon.com/images/M/MV5BYmY2ZTcxZTgtYzhlNS00NzE0LWIxN2ItMjIxNjEwMDU0ZGM2XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_SX624_CR0,0,624,351_AL_.jpg'}
+  model: actorDto = {
+    name: 'Tom Holland', 
+    dateOfBirth: new Date(), 
+    picture: 'https://m.media-amazon.com/images/M/MV5BYmY2ZTcxZTgtYzhlNS00NzE0LWIxN2ItMjIxNjEwMDU0ZGM2XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_SX624_CR0,0,624,351_AL_.jpg',
+    biography: 'I am holland, 27years old'
+  }
 
   constructor(private activateRoute: ActivatedRoute) { }
 
