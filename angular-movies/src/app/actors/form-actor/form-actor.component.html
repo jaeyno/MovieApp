@@ -12,7 +12,7 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <app-input-img></app-input-img>
+    <app-input-img [urlCurrentImage]="model?.picture" (onImageSelected)="onImageSelected($event)"></app-input-img>
     
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">Save Changes</button>
