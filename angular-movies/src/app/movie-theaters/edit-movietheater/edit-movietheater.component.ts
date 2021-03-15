@@ -1,3 +1,4 @@
+import { movieTheatersCreationDto } from './../movie-theaters.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,11 +10,20 @@ import { ActivatedRoute } from '@angular/router';
 export class EditMovietheaterComponent implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute) { }
+  
+  //temporary raw data
+  model: movieTheatersCreationDto = {
+    name: "Agora"
+  }
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
       
     })
+  }
+
+  saveChanges(movieTheater: movieTheatersCreationDto) {
+
   }
 
 }
