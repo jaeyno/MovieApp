@@ -1,3 +1,4 @@
+import { multipleSelectorModel } from './../../utilities/multiple-selector/multiple-selector.model';
 import { movieDto } from './../movies.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
@@ -13,6 +14,15 @@ export class FormMovieComponent implements OnInit {
   @Input() model: movieDto
   form: FormGroup
 
+  //temporary raw data
+  nonSelectedGenres: multipleSelectorModel[] = [
+    {key: 1, value: 'Drama'},
+    {key: 2, value: 'Action'},
+    {key: 3, value: 'Comedy'},
+  ];
+
+  selectedGenres: multipleSelectorModel[] = [];
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -22,7 +32,8 @@ export class FormMovieComponent implements OnInit {
       inTheaters: false,
       trailer: '',
       releaseDate: '',
-      poster: ''
+      poster: '',
+      genresIds: ''
     })
 
     if (this.model !== undefined) {
@@ -39,6 +50,8 @@ export class FormMovieComponent implements OnInit {
   }
 
   saveChange() {
+    const genresIds = this.selectedGenres.map(value => value.key);
+    this.form.get('genresIds').setValue(genresIds)
     this.onSaveChanges.emit(this.form.value);
   }
 

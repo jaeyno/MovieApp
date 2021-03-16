@@ -25,8 +25,10 @@
     <app-input-img [urlCurrentImage]="model?.poster" (onImageSelected)="onImageSelected($event)"></app-input-img>
 
     <h4>Summary</h4>
-
     <app-input-markdown [markdownContent]="model?.summary" (changeMarkdown)="changeMarkdown($event)"></app-input-markdown>
+
+    <h4>Select the Genres</h4>
+    <app-multiple-selector [NonSelectedItems]="nonSelectedGenres" [SelectedItems]="selectedGenres"></app-multiple-selector>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">Save Changes</button>

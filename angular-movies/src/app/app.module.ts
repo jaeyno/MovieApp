@@ -32,6 +32,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MapComponent } from './utilities/map/map.component';
 import "leaflet/dist/images/marker-shadow.png";
 import { FormMovieComponent } from './movies/form-movie/form-movie.component';
+import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FormMovieComponent } from './movies/form-movie/form-movie.component';
     MovieTheaterFormComponent,
     MapComponent,
     FormMovieComponent,
+    MultipleSelectorComponent,
   ],
   imports: [
     BrowserModule,
