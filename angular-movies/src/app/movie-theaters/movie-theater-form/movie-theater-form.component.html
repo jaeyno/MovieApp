@@ -1,7 +1,7 @@
 <form (submit)="saveChanges()" [formGroup]="form">
     <mat-form-field appearance="outline">
         <mat-label>Name*</mat-label>
-        <input formControlName="name" matInput>
+        <input formControlName="name" matInput autocomplete="off">
         <mat-error>The name field is required</mat-error>
     </mat-form-field>
 
