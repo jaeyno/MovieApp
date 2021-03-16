@@ -33,6 +33,7 @@ import { MapComponent } from './utilities/map/map.component';
 import "leaflet/dist/images/marker-shadow.png";
 import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component';
+import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MultipleSelectorComponent } from './utilities/multiple-selector/multipl
     MapComponent,
     FormMovieComponent,
     MultipleSelectorComponent,
+    ActorsAutocompleteComponent,
   ],
   imports: [
     BrowserModule,
