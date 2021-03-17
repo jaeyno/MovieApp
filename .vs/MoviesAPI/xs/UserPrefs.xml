@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{A5AA98F5-563C-4947-B912-6D14D3D98EFB}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoviesAPI/Validations/FirstLetterUppercaseAttribute.cs">
+    <Files>
+      <File FileName="MoviesAPI/Controllers/GenresController.cs" Line="35" Column="35" />
+      <File FileName="MoviesAPI/Entities/Genre.cs" Line="23" Column="13" />
+      <File FileName="MoviesAPI/Validations/FirstLetterUppercaseAttribute.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MoviesAPI" expanded="True">
+            <Node name="MoviesAPI" expanded="True">
+              <Node name="Validations" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.MoviesAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
