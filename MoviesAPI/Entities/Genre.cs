@@ -16,14 +16,14 @@ namespace MoviesAPI.Entities
         //[FirstLetterUppercase]
         public string Name { get; set; }
 
-        [Range(18, 120)]
-        public int Age { get; set; }
+        //[Range(18, 120)]
+        //public int Age { get; set; }
 
-        [CreditCard]
-        public string CreditCard { get; set; }
+        //[CreditCard]
+        //public string CreditCard { get; set; }
 
-        [Url]
-        public string Url { get; set; }
+        //[Url]
+        //public string Url { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
