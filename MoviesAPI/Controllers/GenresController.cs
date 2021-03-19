@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 using MoviesAPI.Entities;
+using MoviesAPI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,10 @@ namespace MoviesAPI.Controllers
     [ApiController]
     public class GenresController : ControllerBase
     {
-        private readonly IRepository _repository;
-        private readonly ILogger _logger;
+        private readonly ILogger<GenresController> _logger;
 
-        public GenresController(IRepository repository, ILogger logger)
+        public GenresController(ILogger<GenresController> logger)
         {
-            _repository = repository;
             _logger = logger;
         }
 
@@ -26,40 +25,31 @@ namespace MoviesAPI.Controllers
         public async Task<ActionResult<List<Genre>>> Get()
         {
             _logger.LogInformation("Getting all the genres");
-            return await _repository.GetAllGenres();
+            return new List<Genre>() { new Genre() { Id = 1, Name = "Comedy"}};
         }
         
-        [HttpGet("{Id:int}")]
-        public ActionResult<Genre> Get(int Id, [FromHeader] string param2)
+        [HttpGet("{Id:int}", Name = "getGenre")]
+        public ActionResult<Genre> Get(int Id)
         {
-
-            var genre = _repository.GetGenreById(Id);
-
-            if (genre == null)
-            {
-                _logger.LogWarning($"Genre with Id {Id} not found");
-                return NotFound();
-            }
-
-            return genre;
+            throw new NotImplementedException();
         }
 
         [HttpPost]
         public ActionResult Post([FromBody] Genre genre)
         {
-            return NoContent();
+            throw new NotImplementedException();
         }
 
         [HttpPut]
         public ActionResult Put([FromBody] Genre genre)
         { 
-            return NoContent();
+            throw new NotImplementedException();
         }
 
         [HttpDelete]
         public void Delete()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

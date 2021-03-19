@@ -14,7 +14,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MoviesAPI.Entities;
 using MoviesAPI.Filters;
-using MoviesAPI.Services;
 
 namespace MoviesAPI
 {
@@ -35,12 +34,9 @@ namespace MoviesAPI
             {
                 options.Filters.Add(typeof(MyExceptionFilter));
             });
-            services.AddResponseCaching();
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
-            services.AddSingleton<IRepository, InMemoryRepository>();
-            services.AddTransient<MyActionFilter>();
-
-
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesAPI", Version = "v1" });
@@ -48,7 +44,7 @@ namespace MoviesAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -60,8 +56,6 @@ namespace MoviesAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseResponseCaching();
 
             app.UseAuthentication();
 

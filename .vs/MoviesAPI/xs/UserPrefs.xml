@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{A5AA98F5-563C-4947-B912-6D14D3D98EFB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoviesAPI/Filters/MyExceptionFilter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoviesAPI/Startup.cs">
     <Files>
       <File FileName="MoviesAPI/Services/InMemoryRepository.cs" Line="22" Column="1" />
       <File FileName="MoviesAPI/Entities/Genre.cs" Line="26" Column="42" />
       <File FileName="MoviesAPI/Controllers/GenresController.cs" Line="27" Column="41" />
-      <File FileName="MoviesAPI/Startup.cs" Line="38" Column="53" />
+      <File FileName="MoviesAPI/Startup.cs" Line="36" Column="64" />
       <File FileName="MoviesAPI/Filters/MyActionFilter.cs" Line="23" Column="53" />
-      <File FileName="MoviesAPI/Filters/MyExceptionFilter.cs" Line="4" Column="54" />
+      <File FileName="MoviesAPI/Filters/MyExceptionFilter.cs" Line="17" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,9 +14,8 @@
           <Node name="MoviesAPI" expanded="True">
             <Node name="MoviesAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Filters" expanded="True">
-                <Node name="MyExceptionFilter.cs" selected="True" />
-              </Node>
+              <Node name="Filters" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>

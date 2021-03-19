@@ -19,7 +19,5 @@ namespace MoviesAPI.Filters
 
             base.OnException(context);
         }
-
-
     }
 }
