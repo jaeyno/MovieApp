@@ -28,7 +28,8 @@ namespace MoviesAPI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {   
+            //Added cors
             services.AddCors(options => 
             {
                 options.AddDefaultPolicy(builder =>
