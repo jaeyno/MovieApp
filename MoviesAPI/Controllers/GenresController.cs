@@ -32,7 +32,7 @@ namespace MoviesAPI.Controllers
         public async Task<ActionResult<List<GenreDto>>> Get()
         {
             _logger.LogInformation("Getting all the genres");
-            var genre =  await _context.Genres.ToListAsync();
+            var genre =  await _context.Genres.OrderBy(x => x.Name).ToListAsync();
             return _mapper.Map<List<GenreDto>>(genre);
         }
 
