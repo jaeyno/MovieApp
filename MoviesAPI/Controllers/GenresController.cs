@@ -53,7 +53,7 @@ namespace MoviesAPI.Controllers
         public async Task<ActionResult> Post([FromBody] GenreCreationDto genreCreationDto)
         {
             var genre = _mapper.Map<Genre>(genreCreationDto);
-            _context.Add(genreCreationDto);
+            _context.Add(genre);
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -68,10 +68,19 @@ namespace MoviesAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public void Delete()
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int Id)
         {
-            throw new NotImplementedException();
+            var genre = await _context.Genres.FirstOrDefaultAsync(x => x.Id == Id);
+
+            if (genre == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(genre);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }
