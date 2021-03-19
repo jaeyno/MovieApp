@@ -41,8 +41,9 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] ActorCreationDto actorCreationDto)
+        public async Task<ActionResult> Post([FromForm] ActorCreationDto actorCreationDto)
         {
+            return NoContent();
             throw new NotImplementedException();
         }
 
