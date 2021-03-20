@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MoviesAPI.Entities;
 using MoviesAPI.Filters;
+using MoviesAPI.Helpers;
 
 namespace MoviesAPI
 {
@@ -54,6 +55,9 @@ namespace MoviesAPI
             {
                 options.Filters.Add(typeof(MyExceptionFilter));
             });
+
+            //Azure
+            services.AddScoped<IFileStorageService, AzureStorageService>();
             
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
             

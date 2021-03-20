@@ -90,3 +90,7 @@ C:/Users/jno/Desktop/Practice/MovieApp/MoviesAPI/obj/Debug/net5.0/MoviesAPI.genr
 /Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/AutoMapper.dll
 /Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/package-lock.json
+/Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/Azure.Core.dll
+/Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/Azure.Storage.Blobs.dll
+/Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/Azure.Storage.Common.dll
+/Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/Microsoft.Bcl.AsyncInterfaces.dll
