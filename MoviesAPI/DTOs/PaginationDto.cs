@@ -10,7 +10,7 @@ namespace MoviesAPI.DTOs
         {
             get
             {
-                return RecordsPerPage;
+                return recordsPerPage;
             }
             set
             {
