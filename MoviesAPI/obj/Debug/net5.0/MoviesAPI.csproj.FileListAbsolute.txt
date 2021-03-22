@@ -94,3 +94,7 @@ C:/Users/jno/Desktop/Practice/MovieApp/MoviesAPI/obj/Debug/net5.0/MoviesAPI.genr
 /Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/Azure.Storage.Blobs.dll
 /Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/Azure.Storage.Common.dll
 /Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/Microsoft.Bcl.AsyncInterfaces.dll
+/Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+/Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/NetTopologySuite.dll
+/Users/jaeno/Desktop/MovieApp/MoviesAPI/bin/Debug/net5.0/NetTopologySuite.IO.SqlServerBytes.dll
+/Users/jaeno/Desktop/MovieApp/MoviesAPI/obj/Debug/net5.0/EFCoreSqlServerNetTopologySuite.cs
