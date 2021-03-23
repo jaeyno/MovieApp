@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sMEhEAvVzk0Cp/Z1DO3mt4UdpStbANinebRMw+Pg1foCCnHfzkiz5pLmvcNIWk5qm18mB7clpuox6/Sdy1lR+A==",
+  "dgSpecHash": "1hLZje1lcWtdSSEPNSb01xGgCncnxcxPhd+LCbK0IXYIIEKbjLIlHqBOZUtRNFNS9s2nuLNzPYcPwTij3rujFQ==",
   "success": true,
   "projectFilePath": "/Users/jaeno/Desktop/MovieApp/MoviesAPI/MoviesAPI.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,7 @@
     "/Users/jaeno/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "/Users/jaeno/.nuget/packages/nettopologysuite/2.1.0/nettopologysuite.2.1.0.nupkg.sha512",
     "/Users/jaeno/.nuget/packages/nettopologysuite.io.sqlserverbytes/2.0.0/nettopologysuite.io.sqlserverbytes.2.0.0.nupkg.sha512",
+    "/Users/jaeno/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
     "/Users/jaeno/.nuget/packages/runtime.native.system/4.3.0/runtime.native.system.4.3.0.nupkg.sha512",
     "/Users/jaeno/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/Users/jaeno/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
