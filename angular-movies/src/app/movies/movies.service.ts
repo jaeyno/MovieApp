@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -29,6 +29,11 @@ export class MoviesService {
 
   public getById(id: number): Observable<movieDto> {
     return this.http.get<movieDto>(`${this.apiUrl}/${id}`);
+  }
+
+  public filter(values: any): Observable<any> {
+    const params = new HttpParams({fromObject: values});
+    return this.http.get<movieDto[]>(`${this.apiUrl}/filter`, {params, observe: 'response'});
   }
 
   public postGet(): Observable<MoviePostGetDto> {
