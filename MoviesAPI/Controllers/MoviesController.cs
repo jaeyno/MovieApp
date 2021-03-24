@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,25 @@ namespace MoviesAPI.Controllers
             _fileStorageService = fileStorageService;
             _mapper = mapper;
             _context = context;
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<MovieDto>> Get(int id)
+        {
+            var movie = await _context.Movies
+                .Include(x => x.MoviesGenres).ThenInclude(x => x.Genre)
+                .Include(x => x.MovieTheatersMovies).ThenInclude(x => x.MovieTheater)
+                .Include(x => x.MoviesActors).ThenInclude(x => x.Actor)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            var dto = _mapper.Map<MovieDto>(movie);
+            dto.Actors = dto.Actors.OrderBy(x => x.Order).ToList();
+            return dto;
         }
 
         [HttpGet("PostGet")]
