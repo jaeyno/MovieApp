@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { MoviesService } from './../movies.service';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-movies-list',
@@ -9,11 +10,15 @@ export class MoviesListComponent implements OnInit {
 
   @Input() movies;
 
-  constructor() { }
+  @Output() onDelete = new EventEmitter<void>();
+
+  constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {}
 
-  remove(index: number){
-    this.movies.splice(index, 1);
+  remove(id: number){
+    this.moviesService.delete(id).subscribe(() => {
+      this.onDelete.emit();
+    })
   }
 }
