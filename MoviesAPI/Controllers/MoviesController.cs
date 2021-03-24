@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,30 @@ namespace MoviesAPI.Controllers
             _fileStorageService = fileStorageService;
             _mapper = mapper;
             _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<HomeDto>> Get()
+        {
+            var top = 6;
+            var today = DateTime.Today;
+
+            var upcomingReleases = await _context.Movies
+                .Where(x => x.ReleaseDate > today)
+                .OrderBy( x => x.ReleaseDate)
+                .Take(top)
+                .ToListAsync();
+
+            var inTheaters = await _context.Movies
+                .Where(x => x.InTheaters)
+                .OrderBy(x => x.ReleaseDate)
+                .Take(top)
+                .ToListAsync();
+
+            var homeDto = new HomeDto();
+            homeDto.UpcomingReleases = _mapper.Map<List<MovieDto>>(upcomingReleases);
+            homeDto.InTheaters = _mapper.Map<List<MovieDto>>(inTheaters);
+            return homeDto;
         }
 
         [HttpGet("{id:int}")]
