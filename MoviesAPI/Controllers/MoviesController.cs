@@ -82,7 +82,7 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromForm] MovieCreationDto movieCreationDto)
+        public async Task<ActionResult<int>> Post([FromForm] MovieCreationDto movieCreationDto)
         {
             var movie = _mapper.Map<Movie>(movieCreationDto);
 
@@ -94,7 +94,7 @@ namespace MoviesAPI.Controllers
             AnnotateActorsOrder(movie);
             _context.Add(movie);
             await _context.SaveChangesAsync();
-            return NoContent();
+            return movie.Id;
         }
 
         [HttpGet("putget/{id:int}")]

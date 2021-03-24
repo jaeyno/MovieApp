@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { formatDateFormData } from '../utilities/utils';
-import { MoviePostGetDto, movieCreationDto, movieDto, homeDto } from './movies.model';
+import { MoviePostGetDto, movieCreationDto, movieDto, homeDto, MoviePutGetDto } from './movies.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,15 @@ export class MoviesService {
     return this.http.get<homeDto>(this.apiUrl);
   }
 
+  public putGet(id: number): Observable<MoviePutGetDto> {
+    return this.http.get<MoviePutGetDto>(`${this.apiUrl}/putget/${id}`);
+  }
+
+  public edit(id: number, movieCreationDto: movieCreationDto) {
+    const formData = this.BuildFormData(movieCreationDto);
+    return this.http.put(`${this.apiUrl}/${id}`, formData);
+  }
+
   public getById(id: number): Observable<movieDto> {
     return this.http.get<movieDto>(`${this.apiUrl}/${id}`);
   }
@@ -26,9 +35,9 @@ export class MoviesService {
     return this.http.get<MoviePostGetDto>(`${this.apiUrl}/postget`);
   }
 
-  public create(movieCreationDto: movieCreationDto)  {
+  public create(movieCreationDto: movieCreationDto): Observable<number>  {
     const formData = this.BuildFormData(movieCreationDto);
-    return this.http.post(this.apiUrl, formData);
+    return this.http.post<number>(this.apiUrl, formData);
   }
 
   private BuildFormData(movie: movieCreationDto): FormData {

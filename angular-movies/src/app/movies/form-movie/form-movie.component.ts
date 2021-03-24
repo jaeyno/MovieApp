@@ -12,10 +12,11 @@ import { actorsMovieDto } from 'src/app/actors/actors.model';
 export class FormMovieComponent implements OnInit {
 
   @Output() onSaveChanges = new EventEmitter<movieDto>();
+  
   @Input() model: movieDto
+  
   form: FormGroup
 
-  //temporary raw data
   @Input() nonSelectedGenres: multipleSelectorModel[];
 
   @Input() selectedGenres: multipleSelectorModel[] = [];
