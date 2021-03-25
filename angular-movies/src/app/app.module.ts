@@ -38,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MoviesDetailsComponent } from './movies/movies-details/movies-details.component';
+import { AuthorizeViewComponent } from './security/authorize-view/authorize-view.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { MoviesDetailsComponent } from './movies/movies-details/movies-details.c
     ActorsAutocompleteComponent,
     DisplayErrorsComponent,
     MoviesDetailsComponent,
+    AuthorizeViewComponent,
   ],
   imports: [
     BrowserModule,
