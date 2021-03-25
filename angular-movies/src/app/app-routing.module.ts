@@ -1,3 +1,5 @@
+import { LoginComponent } from './security/login/login.component';
+import { IsAdminGuard } from './is-admin.guard';
 import { MoviesDetailsComponent } from './movies/movies-details/movies-details.component';
 import { MovieFilterComponent } from './movies/movie-filter/movie-filter.component';
 import { NgModule } from '@angular/core';
@@ -18,22 +20,24 @@ import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
 
-  {path: 'genres', component: IndexGenresComponent},
-  {path: 'genres/create', component: CreateGenreComponent},
-  {path: 'genres/edit/:id', component: EditGenreComponent},
+  {path: 'genres', component: IndexGenresComponent, canActivate: [IsAdminGuard]},
+  {path: 'genres/create', component: CreateGenreComponent, canActivate: [IsAdminGuard]},
+  {path: 'genres/edit/:id', component: EditGenreComponent, canActivate: [IsAdminGuard]},
 
-  {path: 'actors', component: IndexActorsComponent},
-  {path: 'actors/create', component: CreateActorComponent},
-  {path: 'actors/edit/:id', component: EditActorComponent},
+  {path: 'actors', component: IndexActorsComponent, canActivate: [IsAdminGuard]},
+  {path: 'actors/create', component: CreateActorComponent, canActivate: [IsAdminGuard]},
+  {path: 'actors/edit/:id', component: EditActorComponent, canActivate: [IsAdminGuard]},
 
-  {path: 'movietheaters', component: IndexMovieTheaterComponent},
-  {path: 'movietheaters/create', component: CreateMovieTheaterComponent},
-  {path: 'movietheaters/edit/:id', component: EditMovietheaterComponent},
+  {path: 'movietheaters', component: IndexMovieTheaterComponent, canActivate: [IsAdminGuard]},
+  {path: 'movietheaters/create', component: CreateMovieTheaterComponent, canActivate: [IsAdminGuard]},
+  {path: 'movietheaters/edit/:id', component: EditMovietheaterComponent, canActivate: [IsAdminGuard]},
 
-  {path: 'movies/create', component: CreateMovieComponent},
-  {path: 'movies/edit/:id', component: EditMovieComponent},
+  {path: 'movies/create', component: CreateMovieComponent, canActivate: [IsAdminGuard]},
+  {path: 'movies/edit/:id', component: EditMovieComponent, canActivate: [IsAdminGuard]},
   {path: 'movies/filter', component: MovieFilterComponent},
   {path: 'movies/:id', component: MoviesDetailsComponent},
+
+  {path: 'login', component: LoginComponent},
 
   {path: '**', redirectTo: ''},
 ];
