@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { parseWebAPIErrors } from 'src/app/utilities/utils';
 import { SecurityService } from './../security.service';
 import { userCredentials, authenticationResponse } from './../security.models';
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   errors: string[] = [];
 
-  constructor(private securityService: SecurityService) { }
+  constructor(private securityService: SecurityService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   register(userCredentials: userCredentials) {
     this.errors = [];
     this.securityService.register(userCredentials).subscribe(authenticationResponse => {
-      console.log(authenticationResponse);
+      this.securityService.saveToken(authenticationResponse);
+      this.router.navigate(['/']);
     }, error => this.errors = parseWebAPIErrors(error));
   }
 }
