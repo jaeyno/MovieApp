@@ -1,3 +1,4 @@
+import { RegisterComponent } from './security/register/register.component';
 import { LoginComponent } from './security/login/login.component';
 import { IsAdminGuard } from './is-admin.guard';
 import { MoviesDetailsComponent } from './movies/movies-details/movies-details.component';
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'movies/:id', component: MoviesDetailsComponent},
 
   {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
 
   {path: '**', redirectTo: ''},
 ];

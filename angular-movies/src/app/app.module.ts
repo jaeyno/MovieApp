@@ -40,6 +40,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MoviesDetailsComponent } from './movies/movies-details/movies-details.component';
 import { AuthorizeViewComponent } from './security/authorize-view/authorize-view.component';
 import { LoginComponent } from './security/login/login.component';
+import { RegisterComponent } from './security/register/register.component';
+import { AuthenticationFormComponent } from './security/authentication-form/authentication-form.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { LoginComponent } from './security/login/login.component';
     MoviesDetailsComponent,
     AuthorizeViewComponent,
     LoginComponent,
+    RegisterComponent,
+    AuthenticationFormComponent,
   ],
   imports: [
     BrowserModule,
