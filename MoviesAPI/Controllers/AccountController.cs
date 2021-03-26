@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace MoviesAPI.Controllers
     {
         var queryable = _context.Users.AsQueryable();
         await HttpContext.InsertParametersPaginationInHeader(queryable);
-        var users = await queryable.Paginate(paginationDto).ToListAsync();
+        var users = await queryable.OrderBy(x => x.Email).Paginate(paginationDto).ToListAsync();
         return _mapper.Map<List<UserDto>>(users);
     }
 
@@ -51,7 +52,7 @@ namespace MoviesAPI.Controllers
     public async Task<ActionResult> MakeAdmin([FromBody] string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
-        await _userManager.AddClaimAsync(user, new Claim("role", "Admin"));
+        await _userManager.AddClaimAsync(user, new Claim("role", "admin"));
         return NoContent();
     }
 
@@ -60,7 +61,7 @@ namespace MoviesAPI.Controllers
     public async Task<ActionResult> RemoveAdmin([FromBody] string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
-        await _userManager.RemoveClaimAsync(user, new Claim("role", "Admin"));
+        await _userManager.RemoveClaimAsync(user, new Claim("role", "admin"));
         return NoContent();
     }
 
@@ -104,6 +105,8 @@ namespace MoviesAPI.Controllers
 
         var user = await _userManager.FindByEmailAsync(userCredentials.Email);
         var claimsDB = await _userManager.GetClaimsAsync(user);
+
+        claims.AddRange(claimsDB);
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["keyjwt"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

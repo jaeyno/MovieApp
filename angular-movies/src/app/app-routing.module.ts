@@ -1,3 +1,4 @@
+import { UsersIndexComponent } from './security/users-index/users-index.component';
 import { RegisterComponent } from './security/register/register.component';
 import { LoginComponent } from './security/login/login.component';
 import { IsAdminGuard } from './is-admin.guard';
@@ -40,6 +41,7 @@ const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'users', component: UsersIndexComponent, canActivate: [IsAdminGuard]},
 
   {path: '**', redirectTo: ''},
 ];

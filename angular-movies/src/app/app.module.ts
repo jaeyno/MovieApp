@@ -43,6 +43,7 @@ import { LoginComponent } from './security/login/login.component';
 import { RegisterComponent } from './security/register/register.component';
 import { AuthenticationFormComponent } from './security/authentication-form/authentication-form.component';
 import { JwtInterceptor } from './security/jwt.interceptor';
+import { UsersIndexComponent } from './security/users-index/users-index.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { JwtInterceptor } from './security/jwt.interceptor';
     LoginComponent,
     RegisterComponent,
     AuthenticationFormComponent,
+    UsersIndexComponent,
   ],
   imports: [
     BrowserModule,
