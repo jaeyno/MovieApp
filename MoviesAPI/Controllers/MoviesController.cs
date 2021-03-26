@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoviesAPI.DTOs;
@@ -13,14 +16,17 @@ namespace MoviesAPI.Controllers
 {
     [Route("api/movies")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class MoviesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
         private readonly IFileStorageService _fileStorageService;
         private string container = "movies";
-        public MoviesController(ApplicationDbContext context, IMapper mapper, IFileStorageService fileStorageService)
+        private readonly UserManager<IdentityUser> _userManager;
+        public MoviesController(ApplicationDbContext context, IMapper mapper, IFileStorageService fileStorageService, UserManager<IdentityUser> userManager)
         {
+            _userManager = userManager;
             _fileStorageService = fileStorageService;
             _mapper = mapper;
             _context = context;
@@ -34,7 +40,7 @@ namespace MoviesAPI.Controllers
 
             var upcomingReleases = await _context.Movies
                 .Where(x => x.ReleaseDate > today)
-                .OrderBy( x => x.ReleaseDate)
+                .OrderBy(x => x.ReleaseDate)
                 .Take(top)
                 .ToListAsync();
 
@@ -51,6 +57,7 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public async Task<ActionResult<MovieDto>> Get(int id)
         {
             var movie = await _context.Movies
@@ -64,7 +71,31 @@ namespace MoviesAPI.Controllers
                 return NotFound();
             }
 
+            var averageVote = 0.0;
+            var userVote = 0;
+
+            if (await _context.Ratings.AnyAsync(x => x.MovieId == id))
+            {
+                averageVote = await _context.Ratings.Where(x => x.MovieId == id).AverageAsync(x => x.Rate);
+
+                if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    var email = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "email").Value;
+                    var user = await _userManager.FindByEmailAsync(email);
+                    var userId = user.Id;
+
+                    var ratingDb = await _context.Ratings.FirstOrDefaultAsync(x => x.MovieId == id && x.UserId == userId);
+
+                    if (ratingDb != null)
+                    {
+                        userVote = ratingDb.Rate;
+                    }
+                }
+            }
+
             var dto = _mapper.Map<MovieDto>(movie);
+            dto.AverageVote = averageVote;
+            dto.UserVote = userVote;
             dto.Actors = dto.Actors.OrderBy(x => x.Order).ToList();
             return dto;
         }
@@ -111,7 +142,7 @@ namespace MoviesAPI.Controllers
             var movieTheatersDto = _mapper.Map<List<MovieTheaterDto>>(movieTheaters);
             var genresDto = _mapper.Map<List<GenreDto>>(genres);
 
-            return new MoviePostGetDto() { Genres = genresDto, MovieTheaters = movieTheatersDto};
+            return new MoviePostGetDto() { Genres = genresDto, MovieTheaters = movieTheatersDto };
         }
 
         [HttpPost]
@@ -149,7 +180,7 @@ namespace MoviesAPI.Controllers
             var nonSelectedMovieTheaters = await _context.MovieTheaters.Where(x => !movieTheatersIds.Contains(x.Id)).ToListAsync();
 
             var nonSelectedGenresDto = _mapper.Map<List<GenreDto>>(nonSelectedGenres);
-            var nonSelectedMovieTheatersDto =_mapper.Map<List<MovieTheaterDto>>(nonSelectedMovieTheaters);
+            var nonSelectedMovieTheatersDto = _mapper.Map<List<MovieTheaterDto>>(nonSelectedMovieTheaters);
 
             var response = new MoviePutGetDto();
             response.Movie = movie;
@@ -167,7 +198,7 @@ namespace MoviesAPI.Controllers
         {
             var movie = await _context.Movies.Include(x => x.MoviesActors).Include(x => x.MoviesGenres).Include(x => x.MovieTheatersMovies)
                 .FirstOrDefaultAsync(x => x.Id == id);
-            
+
             if (movie == null)
             {
                 return NotFound();
