@@ -33,6 +33,7 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<HomeDto>> Get()
         {
             var top = 6;
