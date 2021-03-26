@@ -65,4 +65,8 @@ export class SecurityService {
     localStorage.setItem(this.tokenKey, authenticationResponse.token);
     localStorage.setItem(this.expirationTokenKey, authenticationResponse.expiration.toString());
   }
+
+  getToken() {
+    return localStorage.getItem(this.tokenKey);
+  }
 }

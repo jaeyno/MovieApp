@@ -34,7 +34,7 @@ import "leaflet/dist/images/marker-shadow.png";
 import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component';
 import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors-autocomplete.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MoviesDetailsComponent } from './movies/movies-details/movies-details.component';
@@ -42,6 +42,7 @@ import { AuthorizeViewComponent } from './security/authorize-view/authorize-view
 import { LoginComponent } from './security/login/login.component';
 import { RegisterComponent } from './security/register/register.component';
 import { AuthenticationFormComponent } from './security/authentication-form/authentication-form.component';
+import { JwtInterceptor } from './security/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,11 @@ import { AuthenticationFormComponent } from './security/authentication-form/auth
     SweetAlert2Module.forRoot(),
     MarkdownModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
