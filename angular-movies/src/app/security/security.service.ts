@@ -10,8 +10,10 @@ import { Observable } from 'rxjs';
 export class SecurityService {
 
   private apiURL = environment.apiUrl + "/accounts"
-  private tokenKey: string = 'token';
-  private expirationTokenKey: string = 'token-expiration';
+  private readonly tokenKey: string = 'token';
+  private readonly expirationTokenKey: string = 'token-expiration';
+  private readonly roleField: string = "role";
+
 
   constructor(private http: HttpClient) { }
 
@@ -50,7 +52,7 @@ export class SecurityService {
   }
 
   getRole(): string {
-    return '';
+    return this.getFieldFromJWT(this.roleField);
   }
 
   register(userCredentials: userCredentials): Observable<authenticationResponse> {
